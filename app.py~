@@ -1,0 +1,53 @@
+
+from models import User,Post
+
+
+posts = [
+	{
+		'user': 'Stephen',
+		'sub': 'Stephen',
+		'title': 'Stephen',
+		'upvotes': 1,
+		'body': 'Stephen',
+	}	
+
+]
+
+	
+@app.route('/')
+def index():
+	return render_template('index.html', posts =posts)
+
+@app.route('/signup', methods=['GET','POST'])
+def signup():
+	if request.method == 'POST':
+		_username = request.form['username']
+		_email = request.form['email']
+		_password = request.form['password']
+		_confirm_password = request.form['confirm_password']
+		salted_pass = salt_password(_password)
+		hashed_pass = bcrypt.generate_password_hash(salted_pass)
+		try:
+			if _confirm_password == _password:
+				new_user = User(username=_username,email=_email,password=hashed_pass)
+				db.session.add(new_user)
+				db.session.commit()
+			else:
+				return redirect('/')
+				print("passwords dont match.")
+
+		except:
+			print("There was an error creating your account.")
+			return redirect('/')
+		return redirect('/')
+	
+	return render_template('auth/reg.html')
+
+@app.route('/createpost')
+def createpost():
+	return render_template('auth/post.html')
+
+#debug code
+if __name__ == '__main__':
+	app.run(debug=True)
+	

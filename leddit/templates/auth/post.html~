@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>FlaskReddit - Signup</title>
+<style>
+    body {
+        background: #dae0e6 !important;
+        margin-top: 100px !important;
+    }
+    
+    .form-control {
+        margin-bottom: 5px;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <div class="card">
+                <div class="card-header">
+                    Post
+                </div>
+                <div class="card-body">
+                    <form class="form" action="/signup" method="POST">
+                        <input class="form-control" name="title" type="text" placeholder="Title">
+                        <textarea class="form-control" rows = "5" name = "body" placeholder="text (optional)"> </textarea>
+						<br>
+                        <button type="submit" class="btn btn-primary">Sign Up</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+</div>
+{% endblock %}

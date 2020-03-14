@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Leddit - Home</title>
+<style>
+    body {
+    background: #dae0e6 !important;
+    margin-top: 75px !important;
+	margin-bottom: 5px;
+}
+</style>
+{% endblock %}
+
+{% block body %}
+
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-8">
+            
+		{% for post in posts %}	
+			<div class="card">
+                <div class="card-header">
+                    <strong>
+                        <button class="btn btn-light btn-sm">
+                            <i class="fas fa-arrow-up"></i> 
+                        </button>
+                        {{ post.upvotes }} 
+                        <button class="btn btn-light btn-sm">
+                            <i class="fas fa-arrow-down"></i> 
+                        </button>
+                    </strong> l/{{ post.sub }} •<span class="text-muted" style="font-size: 10pt;"> Posted by u/{{ post.author.username }}, {{ post.date_posted.strftime('%Y-%m-%d')}} </span>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{ post.title }}</h5>
+                    <p class="card-text">
+                        {{ post.body }}
+                    </p>
+                </div>
+                <div class="card-footer text-muted">
+                    <a href="" class="btn btn-light btn-sm"><i class="fas fa-comment"></i> 0 Comments</a>
+                    <a href="" class="btn btn-light btn-sm"><i class="fas fa-share"></i> Share</a>
+                </div>
+            </div>
+			<br>
+        {% endfor %}
+		
+		</div>
+        <div class="col-sm-4">
+            <div class="card">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">l/{{sub}}</h5>
+                        <p class="card-text">
+                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officia quo animi voluptatum modi quas labore, id distinctio, ullam sit mollitia obcaecati nemo neque, nulla ipsum aut! Quo at perferendis neque?
+                        </p>
+                        <a class="btn btn-primary btn-block" href="/createpost" >Create Post</a>
+						<br>
+						<a class="btn btn-primary btn-block" href="/createsub" >Create Your Own Subleddit</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
